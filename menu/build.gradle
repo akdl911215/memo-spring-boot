@@ -2,6 +2,8 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.0'
     id 'io.spring.dependency-management' version '1.1.4'
+
+//    id "io.freefair.lombok" version "6.3.0"
 }
 
 group = 'com.launch'
@@ -15,6 +17,12 @@ repositories {
     mavenCentral()
 }
 
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
 dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '3.2.1'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -25,6 +33,12 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '3.3.2'
     testImplementation group: 'com.h2database', name: 'h2', version: '2.2.224'
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 
 }
 
